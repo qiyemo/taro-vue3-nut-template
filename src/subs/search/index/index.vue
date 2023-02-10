@@ -1,0 +1,3 @@
+<template>
+  search index
+</template>
