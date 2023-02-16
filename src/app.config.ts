@@ -27,8 +27,10 @@ export default defineAppConfig({
   permission: {
     'scope.userLocation': {
       desc: '位置信息将用于事件上报'
-    }
+    },
+    
   },
   requiredBackgroundModes: ['audio', 'location'],
+  requiredPrivateInfos: ['getLocation', 'chooseLocation']
 
 })
