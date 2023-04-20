@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     NutButton: typeof import('@nutui/nutui-taro')['Button']
+    NutConfigProvider: typeof import('@nutui/nutui-taro')['ConfigProvider']
     NutToast: typeof import('@nutui/nutui-taro')['Toast']
   }
 }

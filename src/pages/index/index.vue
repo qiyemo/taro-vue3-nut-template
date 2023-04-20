@@ -1,14 +1,18 @@
 <template>
-  <view class="index">
+  <nut-config-provider :theme-vars="themeVars">
+    <view class="index">
     <view>
       <img src="" alt="">
     </view>
+    hello
     {{ msg }} <Dongdong />
     <view class="btn">
       <nut-button type="primary" @click="handleClick('text', msg2, true)">点我</nut-button>
     </view>
     <nut-toast :msg="msg2" v-model:visible="show" :type="type" :cover="cover"/>
   </view>
+  </nut-config-provider>
+ 
 </template>
 
 <script>
@@ -35,9 +39,15 @@ export default {
       state.cover = cover;
     };
 
+    const themeVars = reactive({
+      primaryColor: '#2c68ff',
+      primaryColorEnd: '#2c68ff'
+    });
+
     return {
       ...toRefs(state),
-      handleClick
+      handleClick,
+      themeVars
     }
   }
 }
