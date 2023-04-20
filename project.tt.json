@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "taro-vue3-nut-template",
-  "description": "taro vue3 nutui template",
+  "projectname": "example",
+  "description": "taro-vue3示例",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,
