@@ -1,3 +1,10 @@
+<!--
+ * @Author: qiye
+ * @LastEditors: qiye
+ * @description: page description
+ * @Date: 2023-04-22 22:22:34
+ * @LastEditTime: 2023-04-23 23:40:48
+-->
 <template>
   <nut-config-provider :theme-vars="themeVars">
     <view class="index">
@@ -7,7 +14,9 @@
     hello
     {{ msg }} <Dongdong />
     <view class="btn">
-      <nut-button type="primary" @click="handleClick('text', msg2, true)">点我</nut-button>
+      <nut-button type="primary" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">点我</nut-button>
+
+      
     </view>
     <nut-toast :msg="msg2" v-model:visible="show" :type="type" :cover="cover"/>
   </view>
@@ -18,6 +27,7 @@
 <script>
 import { reactive, toRefs } from 'vue';
 import { Dongdong } from '@nutui/icons-vue-taro';
+import Taro from '@tarojs/taro';
 export default {
   name: 'Index',
   components: {
@@ -32,11 +42,21 @@ export default {
       cover: false
     });
 
-    const handleClick = (type, msg, cover = false) => {
-      state.show = true;
-      state.msg2 = msg;
-      state.type = type;
-      state.cover = cover;
+    const handleSuccess = (result ) => {
+      console.log('handleSuccess: ', result);
+    }
+    const handleFail = (err) => {
+      console.log('handleFail: ', err);
+    }
+    const getPhoneNumber = async (e) => {
+      console.log('getPhoneNumber e.detail.code', e.detail.code);
+      // state.msg =  e.detail.code;
+      const code = e.detail.code;;
+      Taro.request({
+        url: 'http://localhost:8080/weapp/phone-number?code=' + code,
+        success: handleSuccess,
+        fail: handleFail
+      })
     };
 
     const themeVars = reactive({
@@ -46,7 +66,7 @@ export default {
 
     return {
       ...toRefs(state),
-      handleClick,
+      getPhoneNumber,
       themeVars
     }
   }
